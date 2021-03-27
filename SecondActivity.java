@@ -6,34 +6,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.view.View.OnClickListener;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements OnClickListener {
+public class SecondActivity extends AppCompatActivity {
 
-    Button btn;
-    private String TAG = MainActivity.class.getSimpleName();
+    private String TAG = SecondActivity.class.getSimpleName();
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_second);
 
-        btn = (Button) findViewById(R.id.button);
-        btn.setOnClickListener(this);
+        textView = (TextView) findViewById(R.id.textView);
+        Intent intent = getIntent();
+        textView.setText(intent.getStringExtra("key"));
 
-        Log.i(TAG, "onCreate()");
+        Log.i(TAG, "onCreate");
     }
 
-    @Override
-    public void onClick(View v) {
-        int e = v.getId();
-        if(e == R.id.button){
-            Intent intent = new Intent(this, SecondActivity.class);
-            intent.putExtra("key", "МИРЭА Пашкина Екатерина Дмитриевна");
-            startActivity(intent);
-        }
-    }
     @Override
     protected void onStart() {
         super.onStart();
